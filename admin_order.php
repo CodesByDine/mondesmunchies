@@ -97,7 +97,7 @@
                             <p>no orders placed yet!</p>
                         </div>
                     ';
-                    }
+                }
             ?>
         </div>
     </section>
