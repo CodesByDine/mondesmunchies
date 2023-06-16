@@ -71,7 +71,6 @@
     <div class="line"></div>
     <!-- Shop Items -->
     <section class="view_page">
-        <h1 class="title">Shop Best Sellers</h1>
         <?php
             if(isset($message)){
                 foreach ($message as $message){
@@ -84,12 +83,12 @@
                 }
             }
         ?>
-        
+        <div class="box-container">
             <?php
-                if(isset($_GET['pid'])){
-                    $pid = $_GET['pid'];
-                    $select_products = mysqli_query($conn, "SELECT * FROM `products` WHERE id = '$pid'") or die ('query failed');
-                    if(mysqli_num_rows($select_products)>0){
+                if(isset($_GET['id'])){
+                    $id = $_GET['id'];
+                    $select_products = mysqli_query($conn, "SELECT * FROM `products` WHERE id = '$id'") or die ('query failed');
+                    if (mysqli_num_rows($select_products)>0){
                         while($fetch_products = mysqli_fetch_assoc($select_products)){
                           
             ?>
@@ -97,17 +96,17 @@
                 <img src="image/<?php echo $fetch_products['image']; ?>">
                 <div class="detail">
                     <div class="price">R<?php echo $fetch_products['price']; ?></div>
-                <div class="name"><?php echo $fetch_products['name']; ?></div>
-                <div class="detail"><?php echo $fetch_products['product_detail']; ?></div>
-                <input type="hidden" name="product_id" value="<?php echo $fetch_products['id']; ?>">
-                <input type="hidden" name="product_name" value="<?php echo $fetch_products['name']; ?>">
-                <input type="hidden" name="product_price" value="<?php echo $fetch_products['price']; ?>">
-                <input type="hidden" name="product_image" value="<?php echo $fetch_products['image']; ?>">
-                <div class="icon">
-                    <button type="submit" name="add_to_wishlist" class="bi bi-heart"></button>
-                    <input type="number" name="product_quantity" value="1" min="0" class="quantity">
-                    <button type="submit" name="add_to_cart" class="bi bi-cart"></button>
-                </div>
+                    <div class="name"><?php echo $fetch_products['name']; ?></div>
+                    <div class="detail"><?php echo $fetch_products['product_detail']; ?></div>
+                    <input type="hidden" name="product_id" value="<?php echo $fetch_products['id']; ?>">
+                    <input type="hidden" name="product_name" value="<?php echo $fetch_products['name']; ?>">
+                    <input type="hidden" name="product_price" value="<?php echo $fetch_products['price']; ?>">
+                    <input type="hidden" name="product_image" value="<?php echo $fetch_products['image']; ?>">
+                    <div class="icon">
+                        <button type="submit" name="add_to_wishlist" class="bi bi-heart"></button>
+                        <input type="number" name="product_quantity" value="1" min="0" class="quantity">
+                        <button type="submit" name="add_to_cart" class="bi bi-cart"></button>
+                    </div>
                 </div>
             </form>
             <?php 
@@ -115,7 +114,7 @@
                     }
                 }
             ?>
-        
+        </div>
     </section>
     <div class="line"></div>
     <?php include 'footer.php'; ?>

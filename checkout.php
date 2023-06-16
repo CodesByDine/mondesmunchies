@@ -30,10 +30,10 @@
                 $cart_total+=$sub_total;
             }
         }
-        $total_products = implode(', ', $cart_product);
+        $total_product = implode(', ', $cart_product);
         mysqli_query($conn, "INSERT INTO `orders`(`user_id`, `name`, `number`, `email`, `method`, `address`, `total_product`, `total_price`, `placed_on`) VALUES('$user_id', '$name', '$number', '$email', '$method', '$address', '$total_product', '$cart_total', '$placed_on')");
 
-        mysqli_query($conn, "DELETE FROM `cart` WHERE user_id = '$user_id'");
+        mysqli_query($conn, "DELETE FROM `cart` WHERE user_id = '$user_id'") or die('query failed');
         $message[]='order placed successfully';
         header('location:checkout.php');
     }
